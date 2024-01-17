@@ -53,7 +53,7 @@ export default class EasyCustomPicker extends Component {
       styleFieldImage,
       styleFieldIndiText,
       styleFieldPlaceholderText,
-      styleOptionActiveLabel,
+      styleFieldLabel,
     } = this.props;
 
     return (
@@ -74,7 +74,7 @@ export default class EasyCustomPicker extends Component {
                 source={selectedItem.image}
               />
             ) : (
-              <Text style={[styles.text, styleOptionActiveLabel]}>
+              <Text style={[styles.text, styleFieldLabel]}>
                 {selectedItem.label}
               </Text>
             )}
