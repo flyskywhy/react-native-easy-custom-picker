@@ -152,6 +152,7 @@ export default class EasyCustomPicker extends Component {
 
 const styles = StyleSheet.create({
   fieldContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     marginHorizontal: 5,
