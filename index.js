@@ -6,10 +6,19 @@ export default class EasyCustomPicker extends Component {
   constructor(props) {
     super(props);
 
-    this.itemMap = props.options.reduce((map, obj) => {
-      map.set(obj.value, obj);
-      return map;
-    }, new Map());
+    if (typeof props.options[0] === 'object') {
+      this.itemMap = props.options.reduce((map, obj) => {
+        map.set(obj.value, obj);
+        return map;
+      }, new Map());
+      this.getLabel = item => item && item.label;
+    } else {
+      this.itemMap = props.options.reduce((map, value) => {
+        map.set(value, value);
+        return map;
+      }, new Map());
+      this.getLabel = item => item;
+    }
   }
 
   static defaultProps = {
@@ -43,10 +52,8 @@ export default class EasyCustomPicker extends Component {
     styleOptionLabel: {color: 'white'},
   };
 
-  getLabel = item => item && item.label;
-
   renderField = settings => {
-    const {defaultText, selectedItem} = settings;
+    const {defaultText, getLabel, selectedItem} = settings;
     const {
       fieldIndiText,
       styleFieldContainer,
@@ -75,7 +82,7 @@ export default class EasyCustomPicker extends Component {
               />
             ) : (
               <Text style={[styles.text, styleFieldLabel]}>
-                {selectedItem.label}
+                {getLabel(selectedItem)}
               </Text>
             )}
           </View>
