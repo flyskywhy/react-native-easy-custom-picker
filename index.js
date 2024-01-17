@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {CustomPicker} from '@flyskywhy/react-native-custom-picker';
 
 export default class EasyCustomPicker extends Component {
@@ -50,6 +50,7 @@ export default class EasyCustomPicker extends Component {
     const {
       fieldIndiText,
       styleFieldContainer,
+      styleFieldImage,
       styleFieldIndiText,
       styleFieldPlaceholderText,
       styleOptionActiveLabel,
@@ -67,9 +68,16 @@ export default class EasyCustomPicker extends Component {
             <Text style={[styles.text, styleFieldIndiText]}>
               {fieldIndiText}
             </Text>
-            <Text style={[styles.text, styleOptionActiveLabel]}>
-              {selectedItem.label}
-            </Text>
+            {selectedItem.image ? (
+              <Image
+                style={[styles.image, styleFieldImage]}
+                source={selectedItem.image}
+              />
+            ) : (
+              <Text style={[styles.text, styleOptionActiveLabel]}>
+                {selectedItem.label}
+              </Text>
+            )}
           </View>
         )}
       </View>
@@ -83,6 +91,7 @@ export default class EasyCustomPicker extends Component {
       styleOptionActiveContainer,
       styleOptionActiveLabel,
       styleOptionContainer,
+      styleOptionImage,
       styleOptionLabel,
     } = this.props;
     const isActive = getLabel(this.itemMap.get(itemValue)) === getLabel(item);
@@ -94,6 +103,12 @@ export default class EasyCustomPicker extends Component {
           isActive ? styleOptionActiveContainer : styleOptionContainer,
         ]}>
         <View style={styles.innerContainer}>
+          {item.image && (
+            <Image
+              style={[styles.image, {marginRight: 10}, styleOptionImage]}
+              source={item.image}
+            />
+          )}
           <Text
             style={[
               styles.text,
@@ -141,6 +156,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     marginHorizontal: 5,
     borderRadius: 20,
+  },
+  image: {
+    height: 30,
+    width: 30,
   },
   innerContainer: {
     flexDirection: 'row',
