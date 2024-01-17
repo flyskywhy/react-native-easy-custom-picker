@@ -1,0 +1,31 @@
+{
+  "name": "react-native-easy-custom-picker",
+  "version": "1.0.0",
+  "description": "React native easy customizable picker component.",
+  "main": "index.js",
+  "author": {
+    "name": "Li Zheng",
+    "email": "flyskywhy@gmail.com"
+  },
+  "homepage": "https://github.com/flyskywhy/react-native-easy-custom-picker",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flyskywhy/react-native-easy-custom-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flyskywhy/react-native-easy-custom-picker/issues"
+  },
+  "dependencies": {
+    "@flyskywhy/react-native-custom-picker": "^1.0.2"
+  },
+  "scripts": {
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "keywords": [
+    "custom",
+    "easy",
+    "picker",
+    "react-native"
+  ]
+}
