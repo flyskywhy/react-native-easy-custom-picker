@@ -65,12 +65,11 @@ export default class EasyCustomPicker extends Component {
 
     return (
       <View style={[styles.fieldContainer, styleFieldContainer]}>
-        {!selectedItem && (
+        {selectedItem === undefined || selectedItem === null ? (
           <Text style={[styles.text, styleFieldPlaceholderText]}>
             {defaultText}
           </Text>
-        )}
-        {!!selectedItem && (
+        ) : (
           <View style={styles.innerContainer}>
             <Text style={[styles.text, styleFieldIndiText]}>
               {fieldIndiText}
