@@ -66,12 +66,16 @@ export default class EasyCustomPicker extends Component {
     return (
       <View style={[styles.fieldContainer, styleFieldContainer]}>
         {selectedItem === undefined || selectedItem === null ? (
-          <Text style={[styles.text, styleFieldPlaceholderText]}>
+          <Text
+            numberOfLines={1}
+            style={[styles.text, styleFieldPlaceholderText]}>
             {defaultText}
           </Text>
         ) : (
           <View style={styles.innerContainer}>
-            <Text style={[styles.text, styleFieldIndiText]}>
+            <Text
+              numberOfLines={1}
+              style={[styles.text, styleFieldIndiText]}>
               {fieldIndiText}
             </Text>
             {selectedItem.image ? (
@@ -80,7 +84,9 @@ export default class EasyCustomPicker extends Component {
                 source={selectedItem.image}
               />
             ) : (
-              <Text style={[styles.text, styleFieldLabel]}>
+              <Text
+                numberOfLines={1}
+                style={[styles.text, styleFieldLabel]}>
                 {getLabel(selectedItem)}
               </Text>
             )}
@@ -116,6 +122,7 @@ export default class EasyCustomPicker extends Component {
             />
           )}
           <Text
+            numberOfLines={1}
             style={[
               styles.text,
               isActive ? styleOptionActiveLabel : styleOptionLabel,
