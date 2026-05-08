@@ -133,6 +133,7 @@ const optionsScale = [0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7];
             width: 200,
             height: 300,
             marginLeft: 130,
+            borderRadius: 20,
           }}
           styleOptionContainer={{backgroundColor: 'grey'}}
           styleOptionLabel={{color: 'white'}}

@@ -73,9 +73,7 @@ export default class EasyCustomPicker extends Component {
           </Text>
         ) : (
           <View style={styles.innerContainer}>
-            <Text
-              numberOfLines={1}
-              style={[styles.text, styleFieldIndiText]}>
+            <Text numberOfLines={1} style={[styles.text, styleFieldIndiText]}>
               {fieldIndiText}
             </Text>
             {selectedItem.image ? (
@@ -84,9 +82,7 @@ export default class EasyCustomPicker extends Component {
                 source={selectedItem.image}
               />
             ) : (
-              <Text
-                numberOfLines={1}
-                style={[styles.text, styleFieldLabel]}>
+              <Text numberOfLines={1} style={[styles.text, styleFieldLabel]}>
                 {getLabel(selectedItem)}
               </Text>
             )}
@@ -100,6 +96,7 @@ export default class EasyCustomPicker extends Component {
     const {getLabel, item} = settings;
     const {
       itemValue,
+      options,
       styleOptionActiveContainer,
       styleOptionActiveLabel,
       styleOptionContainer,
@@ -108,11 +105,33 @@ export default class EasyCustomPicker extends Component {
     } = this.props;
     const isActive = getLabel(this.itemMap.get(itemValue)) === getLabel(item);
 
+    let isFirstItem = false;
+    if (options.length > 1) {
+      isFirstItem = getLabel(options[0]) === getLabel(item);
+    } else {
+      isFirstItem = true;
+    }
+    const styleFirstItem = isFirstItem
+      ? {borderWidth: 0, borderTopWidth: 0}
+      : {};
+
+    let isLastItem = false;
+    if (options.length > 1) {
+      isLastItem = getLabel(options[options.length - 1]) === getLabel(item);
+    } else {
+      isLastItem = true;
+    }
+    const styleLastItem = isLastItem
+      ? {borderWidth: 0, borderBottomWidth: 0}
+      : {};
+
     return (
       <View
         style={[
           styles.optionContainer,
           isActive ? styleOptionActiveContainer : styleOptionContainer,
+          styleFirstItem,
+          styleLastItem,
         ]}>
         <View style={styles.innerContainer}>
           {item.image && (
