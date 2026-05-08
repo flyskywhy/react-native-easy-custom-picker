@@ -142,6 +142,7 @@ export default class EasyCustomPicker extends Component {
       options,
       renderFooter,
       renderHeader,
+      styleModalBackdrop,
       styleModalContainer,
     } = this.props;
 
@@ -153,6 +154,7 @@ export default class EasyCustomPicker extends Component {
         getLabel={this.getLabel}
         headerTemplate={renderHeader}
         modalAnimationType={'fade'}
+        backdropStyle={styleModalBackdrop}
         modalStyle={styleModalContainer}
         optionTemplate={this.renderOption}
         options={options}
