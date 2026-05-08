@@ -55,6 +55,7 @@ export default class EasyCustomPicker extends Component {
   renderField = settings => {
     const {defaultText, getLabel, selectedItem} = settings;
     const {
+      fieldExtraRightComponent,
       fieldIndiText,
       styleFieldContainer,
       styleFieldImage,
@@ -88,6 +89,8 @@ export default class EasyCustomPicker extends Component {
             )}
           </View>
         )}
+
+        {fieldExtraRightComponent}
       </View>
     );
   };
@@ -186,7 +189,8 @@ export default class EasyCustomPicker extends Component {
 
 const styles = StyleSheet.create({
   fieldContainer: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     marginHorizontal: 5,

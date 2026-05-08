@@ -118,7 +118,13 @@ const optionsScale = [0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7];
           options={optionsScale}
           fieldPlaceholderText={'SCALE'}
           fieldIndiText={'SCALE' + ': '}
+          fieldExtraRightComponent={
+            <Text style={{color: 'grey'}}>
+              {'V' /* or use a down arrow image instead*/}
+            </Text>
+          }
           styleFieldContainer={{
+            width: 120,
             height: 40,
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
           }}
@@ -127,7 +133,10 @@ const optionsScale = [0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7];
             styles.text,
           ]}
           styleFieldIndiText={styles.text}
-          styleFieldLabel={{color: 'yellow'}}
+          styleFieldLabel={{
+            width: 100,
+            color: 'yellow',
+          }}
           styleModalBackdrop={{backgroundColor: 'transparent'}}
           styleModalContainer={{
             width: 200,
