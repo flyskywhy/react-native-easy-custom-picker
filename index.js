@@ -166,6 +166,7 @@ export default class EasyCustomPicker extends Component {
       renderHeader,
       styleModalBackdrop,
       styleModalContainer,
+      scrollViewProps,
     } = this.props;
 
     return (
@@ -182,6 +183,7 @@ export default class EasyCustomPicker extends Component {
         options={options}
         onValueChange={onChange}
         placeholder={fieldPlaceholderText}
+        scrollViewProps={scrollViewProps}
       />
     );
   }
