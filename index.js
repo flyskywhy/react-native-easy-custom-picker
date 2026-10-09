@@ -20,11 +20,8 @@ export default class EasyCustomPicker extends Component {
   constructor(props) {
     super(props);
 
-    if (typeof props.options[0] === 'object') {
-      this.getLabel = item => item && item.label;
-    } else {
-      this.getLabel = item => item;
-    }
+    this.getLabel = item => typeof item === 'object' ? item.label : item;
+
     this.state = {
       options: props.options,
       itemMap: options2ItemMap(props.options),
