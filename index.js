@@ -2,23 +2,44 @@ import React, {Component} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {CustomPicker} from '@flyskywhy/react-native-custom-picker';
 
+function options2ItemMap(options) {
+    if (typeof options[0] === 'object') {
+      return options.reduce((map, obj) => {
+        map.set(obj.value, obj);
+        return map;
+      }, new Map());
+    } else {
+      return options.reduce((map, value) => {
+        map.set(value, value);
+        return map;
+      }, new Map());
+    }
+}
+
 export default class EasyCustomPicker extends Component {
   constructor(props) {
     super(props);
 
     if (typeof props.options[0] === 'object') {
-      this.itemMap = props.options.reduce((map, obj) => {
-        map.set(obj.value, obj);
-        return map;
-      }, new Map());
       this.getLabel = item => item && item.label;
     } else {
-      this.itemMap = props.options.reduce((map, value) => {
-        map.set(value, value);
-        return map;
-      }, new Map());
       this.getLabel = item => item;
     }
+    this.state = {
+      options: props.options,
+      itemMap: options2ItemMap(props.options),
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.options !== prevState.options) {
+      return {
+        options: nextProps.options,
+        itemMap: options2ItemMap(nextProps.options),
+      }
+    }
+
+    return null;
   }
 
   static defaultProps = {
@@ -106,7 +127,7 @@ export default class EasyCustomPicker extends Component {
       styleOptionImage,
       styleOptionLabel,
     } = this.props;
-    const isActive = getLabel(this.itemMap.get(itemValue)) === getLabel(item);
+    const isActive = getLabel(this.state.itemMap.get(itemValue)) === getLabel(item);
 
     let isFirstItem = false;
     if (options.length > 1) {
@@ -171,7 +192,7 @@ export default class EasyCustomPicker extends Component {
 
     return (
       <CustomPicker
-        defaultValue={this.itemMap.get(itemValue)}
+        defaultValue={this.state.itemMap.get(itemValue)}
         fieldTemplate={this.renderField}
         footerTemplate={renderFooter}
         getLabel={this.getLabel}
